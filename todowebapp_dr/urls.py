@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-from django.conf.urls import url
+# from django.conf.urls import url
+from django.urls import re_path
 from django.conf import settings
 from todowebapp_dr import views
 from django.conf import settings
@@ -26,7 +27,7 @@ routes = getattr(settings, 'REACT_ROUTES', [])
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^(%s)?$' % '|'.join(routes), views.Index.as_view()),
+    re_path(r'^(%s)?$' % '|'.join(routes), views.Index.as_view()),
     path('app/', include('todowebapp.urls')),
     path('auth/', include("auth_app.urls")),
 ]
